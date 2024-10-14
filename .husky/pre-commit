@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+# 检测前端代码
+npm run lint:eslint
+npm run lint:stylelint
+# 检测tauri代码
+npm run tauri:lint
