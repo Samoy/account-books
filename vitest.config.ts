@@ -10,6 +10,10 @@ export default defineConfig({
       provider: 'playwright',
       headless: true,
     },
+    coverage: {
+      enabled: true,
+      include: ['src/**/*'],
+    },
   },
   server: {
     fs: {

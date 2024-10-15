@@ -1,7 +1,7 @@
 import { InvokeArgs } from '@tauri-apps/api/core'
 import { mockIPC } from '@tauri-apps/api/mocks'
 import { userEvent } from '@vitest/browser/context'
-import { expect, test } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import { render } from 'vitest-browser-react'
 import App from '../App'
 const setup = () => {
@@ -23,11 +23,19 @@ const setup = () => {
   }
 }
 
-test('Calls the greet function with the provided name', async () => {
-  const { input, button } = setup()
-  const name = 'Samoy'
-  await userEvent.fill(input, name)
-  await userEvent.click(button)
-  const p = document.querySelectorAll('p')
-  expect(p[1]).toHaveTextContent(`Hello, ${name}! You've been greeted from Rust!`)
+describe('App', () => {
+  test('renders name', async () => {
+    const { getByText } = setup()
+    await expect.element(getByText('Welcome to Tauri!')).toBeInTheDocument()
+  })
+
+  test('Calls the greet function with the provided name', async () => {
+    const { input, button, getByText } = setup()
+    const name = 'Samoy'
+    await userEvent.fill(input, name)
+    await userEvent.click(button)
+    await expect
+      .element(getByText(`Hello, ${name}! You've been greeted from Rust!`))
+      .toBeInTheDocument()
+  })
 })

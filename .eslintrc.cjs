@@ -64,4 +64,5 @@ module.exports = {
     'simple-import-sort/exports': 'error', // 导出
     'import/order': 'off',
   },
+  ignorePatterns: ['!src/**/*'],
 }

@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# Test Snapshots
+# Test
+/coverage
 /**/__screenshots__
+/**/__snapshots__
