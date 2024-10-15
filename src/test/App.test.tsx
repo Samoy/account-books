@@ -1,14 +1,14 @@
+import { InvokeArgs } from '@tauri-apps/api/core'
 import { mockIPC } from '@tauri-apps/api/mocks'
 import { userEvent } from '@vitest/browser/context'
 import { expect, test } from 'vitest'
 import { render } from 'vitest-browser-react'
 import App from '../App'
 const setup = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mockIPC(async (cmd, payload): Promise<any> => {
+  mockIPC(async <T,>(cmd: string, payload?: InvokeArgs): Promise<T> => {
     switch (cmd) {
       case 'greet':
-        return `Hello, ${(payload as Record<string, string>)?.name}! You've been greeted from Rust!`
+        return `Hello, ${(payload as Record<string, string>)?.name}! You've been greeted from Rust!` as T
       default:
         throw new Error(`Unknown command:${cmd}`)
     }
