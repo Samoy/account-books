@@ -13,5 +13,12 @@ module.exports = {
   plugins: ['stylelint-scss', 'stylelint-prettier'], // 配置stylelint sass拓展插件
 
   /* 自定义规则 */
-  rules: {},
+  rules: {
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['tailwind', 'layer', 'apply', 'variants', 'responsive', 'screen'],
+      },
+    ],
+  },
 }

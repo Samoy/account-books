@@ -1,51 +1,57 @@
-import { invoke } from '@tauri-apps/api/core'
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Code } from '@nextui-org/code'
+import { Link } from '@nextui-org/link'
+import { Snippet } from '@nextui-org/snippet'
+import { button as buttonStyles } from '@nextui-org/theme'
+import { GithubIcon } from '@/components/icons'
+import { subtitle, title } from '@/components/primitives'
+import { siteConfig } from '@/config/site'
+import DefaultLayout from '@/layouts/default'
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState('')
-  const [name, setName] = useState('')
-
-  async function greet() {
-    setGreetMsg(await invoke('greet', { name }))
-  }
-
   return (
-    <div className="container">
-      <h1>Welcome to Tauri!</h1>
+    <DefaultLayout>
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <div className="inline-block max-w-lg text-center justify-center">
+          <span className={title()}>Make&nbsp;</span>
+          <span className={title({ color: 'violet' })}>beautiful&nbsp;</span>
+          <br />
+          <span className={title()}>websites regardless of your design experience.</span>
+          <div className={subtitle({ class: 'mt-4' })}>
+            Beautiful, fast and modern React UI library.
+          </div>
+        </div>
 
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+        <div className="flex gap-3">
+          <Link
+            isExternal
+            className={buttonStyles({
+              color: 'primary',
+              radius: 'full',
+              variant: 'shadow',
+            })}
+            href={siteConfig.links.docs}
+          >
+            Documentation
+          </Link>
+          <Link
+            isExternal
+            className={buttonStyles({ variant: 'bordered', radius: 'full' })}
+            href={siteConfig.links.github}
+          >
+            <GithubIcon size={20} />
+            GitHub
+          </Link>
+        </div>
 
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault()
-          greet()
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-
-      <p>{greetMsg}</p>
-    </div>
+        <div className="mt-8">
+          <Snippet hideCopyButton hideSymbol variant="bordered">
+            <span>
+              Get started by editing <Code color="primary">pages/index.tsx</Code>
+            </span>
+          </Snippet>
+        </div>
+      </section>
+    </DefaultLayout>
   )
 }
 
