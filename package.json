@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "lint:eslint": "eslint --fix \"src/**/*.{tsx,ts,js,jsx}\"",
-    "lint:stylelint": "stylelint --fix \"src/**/*.{less,postcss,css,scss}\"",
+    "lint:eslint": "eslint \"src/**/*.{tsx,ts,js,jsx}\"",
+    "lint:stylelint": "stylelint \"src/**/*.{less,postcss,css,scss}\"",
     "test": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "build": "tsc && vite build",
